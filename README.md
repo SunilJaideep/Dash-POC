@@ -8,3 +8,6 @@ Python 3.x
 Dash
 
 Postgresql 
+
+
+Clone/download code and dump the .sql file to connect the DB.
