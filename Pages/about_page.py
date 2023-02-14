@@ -11,16 +11,16 @@ from_style = {'margin-left': '35%', 'width': '450px',
 layout = html.Div([
     html.Br(),
     html.Div([
-        dcc.Markdown(''' Please reset your password by giving your user name below '''),
-        dbc.Input(id="user_name_reset", placeholder="Enter Username", type="text"),
         html.Br(),
-        dbc.Input(id="user_password_reset", placeholder="Enter New Password", type="text"),
-        html.Br(),
-        dbc.Row([
-            dbc.Button("Change Password", id='password_change', size="lg", className="d-grid gap-2 col-6 mx-auto"),
+        html.Div([
+            dbc.Row([
+                html.H1("Author: Sunil Jaideep Danda"),
+                html.H3("Purpose: POC Assignment for UsefulBI :)")
+            ])
         ]),
         html.Br(),
-        html.Div(id='reset_login_output')
+        dcc.Markdown('''Note: This is a Sample POC application fro learning purpose '''),
+        html.Br(),
     ], style=from_style),
 
 ])

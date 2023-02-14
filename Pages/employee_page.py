@@ -1,15 +1,10 @@
-import dash
 from dash import dcc
 from dash import html
 from dash import dash_table
-from dash.dependencies import Output, Input, State
-from dash.exceptions import PreventUpdate
-from Pages import employee_page, reset_password_page
 import dash_bootstrap_components as dbc
 import sqlalchemy
 from sqlalchemy.sql import text
 import pandas as pd
-from main import app
 
 from_style = {'margin-left': '35%', 'width': '450px',
               'height': '45px', 'padding': '10px',
@@ -26,7 +21,7 @@ with engine.connect().execution_options(autocommit=True) as conn:
     query = conn.execute(text(sql))
 
 df = pd.DataFrame(query.fetchall())
-department_values = df['department'].values
+department_values = df['department'].unique()
 
 layout = dbc.Container([
     html.Br(),
@@ -51,12 +46,20 @@ layout = dbc.Container([
                     dbc.Row([
                         html.Div(id='filter_table_display', children=[dash_table.DataTable(id='render_filter_table')])
                     ]),
-                    # dbc.Row([
-                    #     html.Div(dbc.Button('Check More +', id='filter_department_button_additional', color='info'))
-                    # ]),
+                    html.Br(),
                     dbc.Row([
-                        html.Div(id='filter_dropdown_display', children=[])
+                        html.Div(dbc.Button('Check More +', id='filter_department_button_additional', color='info'))
                     ]),
+                    html.Br(),
+                    html.Div(id='container'),
+                    html.Br(),
+                    html.Div(id='new_container'),
+                    html.Br(),
+                    dbc.Row([
+                        html.Div(dcc.Link(dbc.Button('Submit', id='sumbit_to_information_page', color='info'),
+                                          href='/information_page'),
+                                 )
+                    ])
                 ]),
             ])
         ]),
